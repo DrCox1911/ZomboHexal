@@ -1,0 +1,135 @@
+-- --[[require "ZHBaseItem"
+-- require "ZHCureIngredient"
+-- require "ZHZombieCure"
+
+-- ZomboHexal = {}
+
+-- --- Constants
+-- -- @section Constants
+-- local ZombRand = ZombRand
+-- local ZombRandFloat = ZombRandFloat
+-- local tostring = tostring
+-- local table = table
+-- local InventoryItemFactory = InventoryItemFactory
+-- local ZomboidGlobals = ZomboidGlobals
+-- local ItemPicker = ItemPicker
+-- local ipairs = ipairs
+
+
+-- --- Current version number
+-- ZomboHexal.VERSION = "0.1-alpha"
+-- --- Author/Maintainer
+-- ZomboHexal.AUTHOR = "Dr_Cox1911"
+-- --- Backwards compatibility mode (build 40) 
+-- ZomboHexal.COMPATIBILITY_MODE = false
+
+-- --[[- Data Tables.
+-- These should not be directly accessed, use function such as `ZomboHexal.addIngredient` instead
+-- @section DataTables
+-- ]]
+-- ZHIngredientManager = {}
+-- ZHAvailableIngredients = {}
+-- ZHIngredients = {}
+
+
+-- --- Configuration Options
+-- -- @section ConfigOpt
+
+-- --- Logging level verbosity.
+-- ZomboHexal.LogLevel = 3
+
+-- -- string names for log levels.
+-- ZomboHexal.LogLevelStrings = { [0] = "ERROR", [1] = "WARN", [2] = "INFO", [3] = "DEBUG"}
+
+-- --[[- Logging Constants.
+-- These are passed to and checked when making calls to `ZomboHexal.log`.
+-- @section Logging
+-- ]]
+
+-- --- integer 0
+-- ZomboHexal.ERROR = 0
+-- --- integer 1
+-- ZomboHexal.WARN = 1
+-- --- integer 2
+-- ZomboHexal.INFO = 2
+-- --- integer 3
+-- ZomboHexal.DEBUG = 3
+
+
+
+-- --- Functions
+-- -- @section Functions
+
+
+-- --[[- Basic logging function.
+-- Prints a message to the console and console.txt log, if ZomboHexal.LogLevel is equal or less then the level arguement.
+-- @tparam int level logging level constant
+-- @tparam string text text message to log.
+-- @usage ZomboHexal.log(ZomboHexal.WARN, "this is a warning log message")
+-- ]]
+-- ZomboHexal.log = function(level, text)
+--     if level > ZomboHexal.LogLevel then return end
+--     local prefix = "ZomboHexal." .. ZomboHexal.LogLevelStrings[level] .. ": "
+--     print(prefix .. text)
+-- end
+
+-- ZomboHexal.addDefaultIngredients = function()
+-- 	ZomboHexal.log(ZomboHexal.INFO, "adding default ingredients")
+-- 	defaultIngredient1 = ZHCureIngredient:new(getText("Item_DefaultIngredient_Asthrol"), 5, 1)
+-- 	defaultIngredient2 = ZHCureIngredient:new(getText("Item_DefaultIngredient_ZBlood"), 3, 1)
+-- end
+
+-- local Rnd = function(maxValue)
+-- 	return ZombRand(maxValue) + 1
+-- end
+
+-- ZomboHexal.spawnItem = function(container, itemType, chance, max)
+-- 	local roll = ZombRandFloat(0, 100)
+-- 	local result = {}
+
+-- 	if roll > chance then return result end
+-- 	local count = Rnd(max)
+-- 	for i=1, count do
+-- 		local item = ItemPicker.tryAddItemToContainer(container, itemType)
+-- 		if not item then break end
+-- 		item:getModData()["ZHBaseItem"] = ZHBaseItem:new()
+-- 		table.insert(result, item)
+-- 	end
+
+-- 	return result
+-- end
+
+-- ZomboHexal.fillContainer = function(roomName, containerType, container)
+-- 	ZomboHexal.log(ZomboHexal.DEBUG, "Checking spawns for "..tostring(roomName) ..", ".. tostring(containerType))
+-- 	ZomboHexal.spawnItem(container, "ZomboHexal.Asthrol", 100, 5)
+-- end
+
+-- ZomboHexal.debugSpawn = function()
+-- 	ZomboHexal.log(ZomboHexal.DEBUG, "getting player")
+-- 	local player = getPlayer()
+-- 	if not player then return end
+-- 	ZomboHexal.log(ZomboHexal.DEBUG, "got player")
+
+-- 	ZomboHexal.log(ZomboHexal.DEBUG, "getting inventory")
+-- 	local inv = player:getInventory()
+-- 	if not inv then return end
+-- 	ZomboHexal.log(ZomboHexal.DEBUG, "got inventory")
+
+-- 	inv:AddItem("Base.Axe")
+-- 	inv:AddItem("ZomboHexal.Asthrol")
+-- end
+
+-- ZomboHexal.debugModData = function(player, item)
+-- 	ZomboHexal.log(ZomboHexal.DEBUG, "Here in OnEquipPrimary")
+-- 	if (not item) then return end
+-- 	--local itemModule = item:getModule()
+-- 	--ZomboHexal.log(ZomboHexal.DEBUG, "Item module: " .. tostring(itemModule))
+-- 	--if (tostring(itemModule) == "ZomboHexal") then
+-- 		local modData = item:getModData()
+-- 		ZomboHexal.log(ZomboHexal.DEBUG, modData["ZHCureIngredient"])
+-- 	--end
+-- end
+
+-- --Events.OnFillContainer.Add(ZomboHexal.fillContainer)
+-- Events.OnNewGame.Add(ZomboHexal.debugSpawn)
+-- Events.OnEquipPrimary.Add(ZomboHexal.debugModData)--]]

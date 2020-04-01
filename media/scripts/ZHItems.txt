@@ -1,0 +1,16 @@
+module ZomboHexal
+{
+	imports
+	{
+		Base
+	}
+
+	item Asthrol
+	{
+		Weight			=		0.01,
+		DisplayName		=		Asthrol,
+		Icon			=		IAsthrol,
+		Type			=		Normal,
+		CantBeFrozen	=		TRUE
+	}
+}

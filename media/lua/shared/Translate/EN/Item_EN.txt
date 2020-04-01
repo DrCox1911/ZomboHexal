@@ -1,0 +1,8 @@
+Item_EN = {
+	Item_ZombieCure = "ZomboHexal - E15H8"
+	Item_DefaultIngredient_Asthrol = "Asthrol"
+	Item_DefaultIngredient_ZBlood = "Zombie Blood Sample"
+	Item_DefaultIngredient_HBlood = "Human Blood Sample"
+	Item_DefaultIngredient_Hydrophyl = "Hydrophyl H212"
+	Item_DefaultIngredient_Candeloria = "Candeloria"
+}
